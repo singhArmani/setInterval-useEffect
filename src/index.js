@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 
 import styled from "styled-components";
 
-import "./styles.css";
-
 const H1 = styled.h1`
   color: palevioletred;
 `;
@@ -12,6 +10,11 @@ const H1 = styled.h1`
 const H3 = styled.h3`
   font-family: monospace;
   font-size: 1em;
+`;
+
+const Container = styled.div`
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
 `;
 
 // Ref: https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often
@@ -79,13 +82,13 @@ function CounterWithRef() {
 
 function App() {
   return (
-    <div className="App">
+    <Container>
       <H1>setInterval Demystifying </H1>
       <CounterWithBug />
       <CounterWithNewIntervalEveryRender />
       <Counter />
       <CounterWithRef />
-    </div>
+    </Container>
   );
 }
 
