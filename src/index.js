@@ -1,10 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 
+import styled from "styled-components";
+
 import "./styles.css";
 
-// Ref: https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often
+const H1 = styled.h1`
+  color: palevioletred;
+`;
 
+const H3 = styled.h3`
+  font-family: monospace;
+  font-size: 1em;
+`;
+
+// Ref: https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often
 function CounterWithBug() {
   const [count, setCount] = useState(0);
 
@@ -13,7 +23,7 @@ function CounterWithBug() {
     return () => clearInterval(id);
   }, []); // 🔴 Bug: `count` is not specified as a dependency
 
-  return <h3>Counter without passing 'count' dependency: {count}</h3>;
+  return <H3>Counter without passing 'count' dependency: {count}</H3>;
 }
 
 function CounterWithNewIntervalEveryRender() {
@@ -24,7 +34,7 @@ function CounterWithNewIntervalEveryRender() {
       clearInterval(id);
     };
   });
-  return <h3>Counter with new interval every re-render: {count}</h3>;
+  return <H3>Counter with new interval every re-render: {count}</H3>;
 }
 
 function Counter() {
@@ -40,7 +50,7 @@ function Counter() {
     // desirable
   }, []);
 
-  return <h3>Counter with stable setter: {count}</h3>;
+  return <H3>Counter with stable setter: {count}</H3>;
 }
 
 function CounterWithRef() {
@@ -64,13 +74,13 @@ function CounterWithRef() {
     return () => clearInterval(intervalId);
   }, []);
 
-  return <h3>Counter with useRef: {count}</h3>;
+  return <H3>Counter with useRef: {count}</H3>;
 }
 
 function App() {
   return (
     <div className="App">
-      <h1>setInterval Demystifying </h1>
+      <H1>setInterval Demystifying </H1>
       <CounterWithBug />
       <CounterWithNewIntervalEveryRender />
       <Counter />
